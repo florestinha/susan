@@ -1,7 +1,6 @@
 import test from 'tape';
 import { omit } from 'ramda';
 import createTestClient from '../../../../__tests__/integration/createTestClient';
-
 import CREATE_CONTACT_TYPE_MUTATION from '../mutations/CREATE_CONTACT_TYPE_MUTATION';
 
 test('create contactType', async (t) => {
@@ -13,14 +12,14 @@ test('create contactType', async (t) => {
     },
   };
 
-  const result = await mutate({
+  const createResult = await mutate({
     mutation: CREATE_CONTACT_TYPE_MUTATION,
     variables,
   });
 
-  t.equal(result.errors, undefined, 'should not throw an error');
+  t.equal(createResult.errors, undefined, 'should not throw an error');
   t.deepEqual(
-    omit(['id'], result.data.createContactType.contactType),
+    omit(['id'], createResult.data.createContactType.contactType),
     {
       name: randomName,
     },
@@ -29,20 +28,20 @@ test('create contactType', async (t) => {
 
   clean();
 
-  const duplicate = await mutate({
+  const duplicateResult = await mutate({
     mutation: CREATE_CONTACT_TYPE_MUTATION,
     variables,
   });
 
   t.equal(
-    duplicate.errors[0].extensions.exception.code,
+    duplicateResult.errors[0].extensions.exception.code,
     '23505',
     'should receive error 23505 if contactType already exists',
   );
 
   clean();
 
-  const empty = await mutate({
+  const emptyResult = await mutate({
     mutation: CREATE_CONTACT_TYPE_MUTATION,
     variables: {
       input: {
@@ -52,7 +51,7 @@ test('create contactType', async (t) => {
   });
 
   t.notEqual(
-    empty.errors[0].message.search('invalid value null'),
+    emptyResult.errors[0].message.search('invalid value null'),
     -1,
     'should receive error if name is null',
   );
