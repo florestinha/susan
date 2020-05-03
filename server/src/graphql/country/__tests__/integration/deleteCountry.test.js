@@ -30,20 +30,28 @@ test('delete country', async (t) => {
     },
   });
 
-  t.equal(deleteResult.data.deleteCountry.count, 1, 'should return 1');
+  if (typeof (deleteResult.errors) !== 'undefined') {
+    t.notEqual(
+      deleteResult.errors[0].message.search('foreign'),
+      -1,
+      'should return error if foreign key',
+    );
+  } else {
+    t.equal(deleteResult.data.deleteCountry.count, 1, 'should return 1');
 
-  clean();
+    clean();
 
-  const emptyResult = await mutate({
-    mutation: DELETE_COUNTRY_MUTATION,
-    variables: {
-      input: {
-        code: firstCountryCode,
+    const emptyResult = await mutate({
+      mutation: DELETE_COUNTRY_MUTATION,
+      variables: {
+        input: {
+          code: firstCountryCode,
+        },
       },
-    },
-  });
+    });
 
-  t.equal(emptyResult.data.deleteCountry.count, 0, 'should return 0');
+    t.equal(emptyResult.data.deleteCountry.count, 0, 'should return 0');
+  }
 
   t.end();
   test.onFinish(() => process.exit(0));

@@ -30,20 +30,28 @@ test('delete contactType', async (t) => {
     },
   });
 
-  t.equal(deleteResult.data.deleteContactType.count, 1, 'should return 1');
+  if (typeof (deleteResult.errors) !== 'undefined') {
+    t.notEqual(
+      deleteResult.errors[0].message.search('foreign'),
+      -1,
+      'should return error if foreign key',
+    );
+  } else {
+    t.equal(deleteResult.data.deleteContactType.count, 1, 'should return 1');
 
-  clean();
+    clean();
 
-  const emptyResult = await mutate({
-    mutation: DELETE_CONTACT_TYPE_MUTATION,
-    variables: {
-      input: {
-        id: firstContactTypeId,
+    const emptyResult = await mutate({
+      mutation: DELETE_CONTACT_TYPE_MUTATION,
+      variables: {
+        input: {
+          id: firstContactTypeId,
+        },
       },
-    },
-  });
+    });
 
-  t.equal(emptyResult.data.deleteContactType.count, 0, 'should return 4');
+    t.equal(emptyResult.data.deleteContactType.count, 0, 'should return 4');
+  }
 
   t.end();
   test.onFinish(() => process.exit(0));

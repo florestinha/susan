@@ -30,20 +30,28 @@ test('delete linkType', async (t) => {
     },
   });
 
-  t.equal(deleteResult.data.deleteLinkType.count, 1, 'should return 1');
+  if (typeof (deleteResult.errors) !== 'undefined') {
+    t.notEqual(
+      deleteResult.errors[0].message.search('foreign'),
+      -1,
+      'should return error if foreign key',
+    );
+  } else {
+    t.equal(deleteResult.data.deleteLinkType.count, 1, 'should return 1');
 
-  clean();
+    clean();
 
-  const emptyResult = await mutate({
-    mutation: DELETE_LINK_TYPE_MUTATION,
-    variables: {
-      input: {
-        id: firstLinkTypeId,
+    const emptyResult = await mutate({
+      mutation: DELETE_LINK_TYPE_MUTATION,
+      variables: {
+        input: {
+          id: firstLinkTypeId,
+        },
       },
-    },
-  });
+    });
 
-  t.equal(emptyResult.data.deleteLinkType.count, 0, 'should return 4');
+    t.equal(emptyResult.data.deleteLinkType.count, 0, 'should return 4');
+  }
 
   t.end();
   test.onFinish(() => process.exit(0));

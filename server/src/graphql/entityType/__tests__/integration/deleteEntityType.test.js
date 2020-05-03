@@ -30,20 +30,28 @@ test('delete entityType', async (t) => {
     },
   });
 
-  t.equal(deleteResult.data.deleteEntityType.count, 1, 'should return 1');
+  if (typeof (deleteResult.errors) !== 'undefined') {
+    t.notEqual(
+      deleteResult.errors[0].message.search('foreign'),
+      -1,
+      'should return error if foreign key',
+    );
+  } else {
+    t.equal(deleteResult.data.deleteEntityType.count, 1, 'should return 1');
 
-  clean();
+    clean();
 
-  const emptyResult = await mutate({
-    mutation: DELETE_ENTITY_TYPE_MUTATION,
-    variables: {
-      input: {
-        id: firstEntityTypeId,
+    const emptyResult = await mutate({
+      mutation: DELETE_ENTITY_TYPE_MUTATION,
+      variables: {
+        input: {
+          id: firstEntityTypeId,
+        },
       },
-    },
-  });
+    });
 
-  t.equal(emptyResult.data.deleteEntityType.count, 0, 'should return 4');
+    t.equal(emptyResult.data.deleteEntityType.count, 0, 'should return 4');
+  }
 
   t.end();
   test.onFinish(() => process.exit(0));

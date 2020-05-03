@@ -39,26 +39,6 @@ test('update entity', async (t) => {
     'should return the updated entity',
   );
 
-  clean();
-
-  const secondEntityId = entities.data.entities[1].id;
-
-  const emptyResult = await mutate({
-    mutation: UPDATE_ENTITY_MUTATION,
-    variables: {
-      input: {
-        id: secondEntityId,
-        name: null,
-      },
-    },
-  });
-
-  t.notEqual(
-    emptyResult.errors[0].message.search('invalid value null'),
-    -1,
-    'should receive error if name is null',
-  );
-
   t.end();
   test.onFinish(() => process.exit(0));
 });

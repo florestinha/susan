@@ -61,24 +61,6 @@ test('update contactType', async (t) => {
     'should receive error 23505 if contactType already exists',
   );
 
-  clean();
-
-  const emptyResult = await mutate({
-    mutation: UPDATE_CONTACT_TYPE_MUTATION,
-    variables: {
-      input: {
-        id: secondContactTypeId,
-        name: null,
-      },
-    },
-  });
-
-  t.notEqual(
-    emptyResult.errors[0].message.search('invalid value null'),
-    -1,
-    'should receive error if name is null',
-  );
-
   t.end();
   test.onFinish(() => process.exit(0));
 });

@@ -61,24 +61,6 @@ test('update memberType', async (t) => {
     'should receive error 23505 if memberType already exists',
   );
 
-  clean();
-
-  const emptyResult = await mutate({
-    mutation: UPDATE_MEMBER_TYPE_MUTATION,
-    variables: {
-      input: {
-        id: secondMemberTypeId,
-        name: null,
-      },
-    },
-  });
-
-  t.notEqual(
-    emptyResult.errors[0].message.search('invalid value null'),
-    -1,
-    'should receive error if name is null',
-  );
-
   t.end();
   test.onFinish(() => process.exit(0));
 });
