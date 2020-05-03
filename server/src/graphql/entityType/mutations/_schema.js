@@ -21,7 +21,7 @@ input CreateEntityTypeInput {
 
 input UpdateEntityTypeInput {
   id: ID!
-  name: String!
+  name: String
 }
 
 input DeleteEntityTypeInput {

@@ -21,7 +21,7 @@ input CreateContactTypeInput {
 
 input UpdateContactTypeInput {
   id: ID!
-  name: String!
+  name: String
 }
 
 input DeleteContactTypeInput {

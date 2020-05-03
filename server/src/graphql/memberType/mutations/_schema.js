@@ -21,7 +21,7 @@ input CreateMemberTypeInput {
 
 input UpdateMemberTypeInput {
   id: ID!
-  name: String!
+  name: String
 }
 
 input DeleteMemberTypeInput {

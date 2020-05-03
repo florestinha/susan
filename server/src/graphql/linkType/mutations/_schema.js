@@ -21,7 +21,7 @@ input CreateLinkTypeInput {
 
 input UpdateLinkTypeInput {
   id: ID!
-  name: String!
+  name: String
 }
 
 input DeleteLinkTypeInput {

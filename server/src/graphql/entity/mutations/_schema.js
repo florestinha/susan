@@ -31,7 +31,7 @@ input CreateEntityInput {
 
 input UpdateEntityInput {
   id: ID!
-  name: String!
+  name: String
   description: String 
   address: String
   addressComplement: String

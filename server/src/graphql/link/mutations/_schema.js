@@ -17,14 +17,14 @@ extend type Mutation {
 
 input CreateLinkInput {
   link: String!
-  entityId: Int
-  linkTypeId: Int
+  entityId: Int!
+  linkTypeId: Int!
   main: Boolean
 }
 
 input UpdateLinkInput {
   id: ID!
-  link: String!
+  link: String
   entityId: Int
   linkTypeId: Int
   main: Boolean

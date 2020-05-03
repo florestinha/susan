@@ -32,6 +32,7 @@ input UpdateUserInput {
   id: ID!
   email: String
   password: String
+  entityId: Int
   resetPasswordToken: String
   resetPasswordExpires: String
 }
@@ -46,7 +47,7 @@ input PasswordForgotInput {
 
 input PasswordResetInput {
   token: String!,
-    password: String!
+  password: String!
 }
 
 type CreateUserResult {

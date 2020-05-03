@@ -22,7 +22,7 @@ input CreateCountryInput {
 
 input UpdateCountryInput {
   code: String!
-  name: String!
+  name: String
 }
 
 input DeleteCountryInput {
