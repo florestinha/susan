@@ -17,17 +17,15 @@ extend type Mutation {
 
 input CreateEntityMemberInput {
   entityIdMember: Int!
-  entityId: Int
-  memberTypeId: Int
-  main: Boolean
+  entityId: Int!
+  memberTypeId: Int!
 }
 
 input UpdateEntityMemberInput {
   id: ID!
-  entityIdMember: Int!
+  entityIdMember: Int
   entityId: Int
   memberTypeId: Int
-  main: Boolean
 }
 
 input DeleteEntityMemberInput {
