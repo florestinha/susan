@@ -2,7 +2,7 @@ export default `
 type Contact {
   id: ID!
   name: String!
-  entityId: Int
+  entityId: Int!
   main: Boolean
 }
 `;

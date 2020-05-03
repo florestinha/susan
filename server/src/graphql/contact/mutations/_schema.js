@@ -17,13 +17,13 @@ extend type Mutation {
 
 input CreateContactInput {
   name: String!
-  entityId: Int
+  entityId: Int!
   main: Boolean
 }
 
 input UpdateContactInput {
   id: ID!
-  name: String!
+  name: String
   entityId: Int
   main: Boolean
 }
