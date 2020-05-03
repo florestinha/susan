@@ -8,7 +8,7 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
-    "test": "babel-tape-runner",
+    "test": "babel-tape-runner src/graphql/**/__tests__/integration/**/*.test.js",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/index.js",
     "start-dev": "nodemon --exec babel-node ./src/index.js",
