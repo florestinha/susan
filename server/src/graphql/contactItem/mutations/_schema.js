@@ -17,13 +17,13 @@ extend type Mutation {
 
 input CreateContactItemInput {
   contact: String!
-  contactTypeId: Int
-  contactId: Int
+  contactTypeId: Int!
+  contactId: Int!
 }
 
 input UpdateContactItemInput {
   id: ID!
-  contact: String!
+  contact: String
   contactTypeId: Int
   contactId: Int
 }
