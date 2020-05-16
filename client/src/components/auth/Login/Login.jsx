@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import LoginForm from './LoginForm/LoginForm';
 
 const Login = ({ setHeader }) => {
   setHeader('LOGIN');
   return (
-    <div className="container">
+    <section class="hero is-fullheight is-medium is-primary is-bold">
       <LoginForm />
-      <Link to="/forgot" className="ml1 no-underline black">
-          forgot my password
-      </Link>
-    </div>
+    </section>
   );
 };
 
