@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
@@ -7,8 +7,13 @@ import FarmersMap from '../../components/FarmersMap/FarmersMap';
 import '../PageStyles.css';
 import FARMERS_QUERY from './FARMERS_QUERY';
 import ErrorHandler from '../../components/ErrorAndLoading/ErrorHandler';
+import FarmerInfo from './FarmerInfo';
+import styles from './HomePage.module.css';
+import FarmersList from './FarmersList';
 
 const HomePage = () => {
+  const [selectedFarmer, setSelectedFarmer] = useState();
+
   const history = useHistory();
 
   const queryResult = useQuery(FARMERS_QUERY);
@@ -18,14 +23,26 @@ const HomePage = () => {
   const { entities } = queryResult.data;
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div className={styles.homeContainer}>
+      <div className={styles.mapTitle}>
+        Mapa de Produtores Agroecológicos
+      </div>
+      <div className={styles.mapAndInfo}>
+        <FarmersList
+          farmers={entities}
+          selectedFarmer={selectedFarmer}
+          selectFarmerCallback={setSelectedFarmer}
+        />
+        <FarmersMap
+          style={{
+            width: '500px',
+            height: '500px',
+          }}
+          farmers={entities}
+          onFarmerSelected={setSelectedFarmer}
+        />
+        <FarmerInfo farmer={selectedFarmer} />
+      </div>
       <button
         type='button'
         style={{ margin: '30px' }}
@@ -33,13 +50,6 @@ const HomePage = () => {
       >
         Criar nova entidade
       </button>
-      <FarmersMap
-        style={{
-          width: '500px',
-          height: '500px',
-        }}
-        farmers={entities}
-      />
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    entities {
+  query Entity($id: ID!) {
+    entity(id: $id) {
       id
-      latitude
-      longitude
       name
       description
+      latitude
+      longitude
     }
   }
 `;
