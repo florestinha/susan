@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './FarmersList.module.scss';
+import styles from './FarmerList.module.scss';
 
-const FarmersList = ({
+const FarmerList = ({
   farmers,
   selectedFarmer,
   selectFarmerCallback,
@@ -23,15 +23,15 @@ const FarmersList = ({
   </div>
 );
 
-FarmersList.propTypes = {
+FarmerList.propTypes = {
   farmers: PropTypes.array.isRequired,
   selectedFarmer: PropTypes.object,
   selectFarmerCallback: PropTypes.func,
 };
 
-FarmersList.defaultProps = {
+FarmerList.defaultProps = {
   selectedFarmer: undefined,
   selectFarmerCallback: () => null,
 };
 
-export default FarmersList;
+export default FarmerList;

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
-import FarmersMap from '../../components/FarmersMap/FarmersMap';
+import FarmerMap from './FarmerMap/FarmerMap';
+import FarmerInfo from './FarmerInfo/FarmerInfo';
+import FarmerList from './FarmerList/FarmerList';
+import ErrorHandler from '../../components/ErrorAndLoading/ErrorHandler';
+import FARMERS_QUERY from './FARMERS_QUERY';
 
 import '../PageStyles.css';
-import FARMERS_QUERY from './FARMERS_QUERY';
-import ErrorHandler from '../../components/ErrorAndLoading/ErrorHandler';
-import FarmerInfo from './FarmerInfo';
 import styles from './HomePage.module.css';
-import FarmersList from './FarmersList';
 
 const HomePage = () => {
   const [selectedFarmer, setSelectedFarmer] = useState();
@@ -28,18 +28,19 @@ const HomePage = () => {
         Mapa de Produtores Agroecológicos
       </div>
       <div className={styles.mapAndInfo}>
-        <FarmersList
+        <FarmerList
           farmers={entities}
           selectedFarmer={selectedFarmer}
           selectFarmerCallback={setSelectedFarmer}
         />
-        <FarmersMap
+        <FarmerMap
           style={{
             width: '500px',
             height: '500px',
           }}
           farmers={entities}
-          onFarmerSelected={setSelectedFarmer}
+          selectedFarmer={selectedFarmer}
+          selectFarmerCallback={setSelectedFarmer}
         />
         <FarmerInfo farmer={selectedFarmer} />
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   GoogleApiWrapper,
@@ -6,26 +6,21 @@ import {
   Marker,
   InfoWindow,
 } from 'google-maps-react';
-import { defaultCoordinates, googleApiKey } from '../../config';
-import styles from './FarmersMap.module.css';
+import { defaultCoordinates, googleApiKey } from '../../../config';
+import styles from './FarmerMap.module.css';
 
-const FarmersMap = ({
+const FarmerMap = ({
   google,
   style,
   farmers,
-  onFarmerSelected,
+  selectedFarmer,
+  selectFarmerCallback,
 }) => {
   const [isInfoWindowOpen, setIsInfoWindowOpen] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
-  const [selectedPlace, setSelectedPlace] = useState();
-
-  useEffect(
-    () => onFarmerSelected(selectedPlace),
-    [selectedPlace],
-  );
 
   const onMarkerClick = (farmer, marker) => {
-    setSelectedPlace(farmer);
+    selectFarmerCallback(farmer);
     setActiveMarker(marker);
     setIsInfoWindowOpen(true);
   };
@@ -33,8 +28,8 @@ const FarmersMap = ({
   const onMapClicked = () => {
     if (isInfoWindowOpen) {
       setIsInfoWindowOpen(false);
-      setActiveMarker({});
-      setSelectedPlace({});
+      // setActiveMarker({});
+      // setSelectedPlace({});
     }
   };
 
@@ -59,7 +54,8 @@ const FarmersMap = ({
           <Marker
             // eslint-disable-next-line no-shadow
             onClick={({ farmer }, marker) => onMarkerClick(farmer, marker)}
-            key={farmer.name}
+            key={farmer.id}
+            // ref={farmer.id}
             farmer={farmer}
             title={farmer.name}
             position={{
@@ -73,8 +69,8 @@ const FarmersMap = ({
           visible={isInfoWindowOpen}
         >
           <div className={styles.infoWindow}>
-            <h4>{selectedPlace?.name}</h4>
-            {selectedPlace?.description}
+            <h4>{selectedFarmer?.name}</h4>
+            {selectedFarmer?.description}
           </div>
         </InfoWindow>
       </Map>
@@ -82,13 +78,18 @@ const FarmersMap = ({
   );
 };
 
-FarmersMap.propTypes = {
+FarmerMap.propTypes = {
   google: PropTypes.object.isRequired,
   style: PropTypes.object.isRequired,
   farmers: PropTypes.array.isRequired,
-  onFarmerSelected: PropTypes.func.isRequired,
+  selectedFarmer: PropTypes.object,
+  selectFarmerCallback: PropTypes.func.isRequired,
+};
+
+FarmerMap.defaultProps = {
+  selectedFarmer: undefined,
 };
 
 export default GoogleApiWrapper({
   apiKey: googleApiKey,
-})(FarmersMap);
+})(FarmerMap);
