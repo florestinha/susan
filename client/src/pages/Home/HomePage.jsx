@@ -47,7 +47,7 @@ const HomePage = () => {
         type='button'
         className='button'
         style={{ margin: '30px' }}
-        onClick={() => history.push('entity-create')}
+        onClick={() => history.push('producer-create')}
       >
         Criar nova entidade
       </button>

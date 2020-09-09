@@ -3,8 +3,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home/HomePage';
-import EntityCreatePage from './pages/Entity/EntityCreatePage/EntityCreatePage';
-import EntityDetailsPage from './pages/Entity/EntityDetailsPage/EntityDetailsPage';
+import ProducerCreatePage from './pages/Producer/ProducerCreatePage/ProducerCreatePage';
+import ProducerDetailsPage from './pages/Producer/ProducerDetailsPage/ProducerDetailsPage';
 
 import './sass/App.scss';
 
@@ -20,11 +20,11 @@ const App = () => (
       <Route exact path='/'>
         <Home />
       </Route>
-      <Route exact path='/entity-create'>
-        <EntityCreatePage />
+      <Route exact path='/producer-create'>
+        <ProducerCreatePage />
       </Route>
-      <Route exact path='/entity/:entityId'>
-        <EntityDetailsPage />
+      <Route exact path='/producer/:producerId'>
+        <ProducerDetailsPage />
       </Route>
       {/* <Route exact path='/forgot' component={PasswordForgot} />
       <Route exact path='/reset/:token' component={PasswordReset} /> */}

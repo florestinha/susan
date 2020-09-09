@@ -10,7 +10,7 @@ const FarmerInfo = ({ farmer }) => {
       {farmer ? (
         <div
           className={styles.producerInfo}
-          onClick={() => history.push(`entity/${farmer.id}`)}
+          onClick={() => history.push(`producer/${farmer.id}`)}
         >
           <div className={styles.row}>{`Nome: ${farmer.name}`}</div>
           <div className={styles.row}>{`Descrição: ${farmer.description}`}</div>

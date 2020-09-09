@@ -9,8 +9,8 @@ import {
 } from 'google-maps-react';
 import Geocode from 'react-geocode';
 
-import validator from './EntityCreateFormValidator';
-import ENTITY_CREATE_MUTATION from './ENTITY_CREATE_MUTATION';
+import validator from './ProducerCreateFormValidator';
+import PRODUCER_CREATE_MUTATION from './PRODUCER_CREATE_MUTATION';
 import { defaultCoordinates, googleApiKey } from '../../../config';
 
 Geocode.setApiKey(googleApiKey);
@@ -19,7 +19,7 @@ Geocode.setRegion('br');
 
 const { Field, Input, Control, Label } = Form;
 
-const EntityCreateForm = ({
+const ProducerCreateForm = ({
   google,
 }) => {
   const [name, setName] = useState('');
@@ -49,8 +49,8 @@ const EntityCreateForm = ({
 
   const history = useHistory();
 
-  const [entityCreateMutation] = useMutation(
-    ENTITY_CREATE_MUTATION,
+  const [producerCreateMutation] = useMutation(
+    PRODUCER_CREATE_MUTATION,
     {
       variables: {
         input: {
@@ -70,7 +70,7 @@ const EntityCreateForm = ({
     longitude: coordinates?.lng || '',
   });
 
-  const submit = () => entityCreateMutation();
+  const submit = () => producerCreateMutation();
 
   const validateAndSubmit = async () => {
     const newValidation = validate();
@@ -189,10 +189,10 @@ const EntityCreateForm = ({
   );
 };
 
-EntityCreateForm.propTypes = {
+ProducerCreateForm.propTypes = {
   google: PropTypes.object.isRequired,
 };
 
 export default GoogleApiWrapper({
   apiKey: googleApiKey,
-})(EntityCreateForm);
+})(ProducerCreateForm);
