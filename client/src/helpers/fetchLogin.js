@@ -1,7 +1,7 @@
-import config from '../config';
+import { getApiUrl } from '../config';
 
 export default async (email, password) => {
-  const apiUrl = config.getApiUrl();
+  const apiUrl = getApiUrl();
 
   return fetch(
     `${apiUrl}/login`,

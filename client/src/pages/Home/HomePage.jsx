@@ -8,7 +8,6 @@ import FarmerList from './FarmerList/FarmerList';
 import ErrorHandler from '../../components/ErrorAndLoading/ErrorHandler';
 import FARMERS_QUERY from './FARMERS_QUERY';
 
-import '../PageStyles.css';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
@@ -46,6 +45,7 @@ const HomePage = () => {
       </div>
       <button
         type='button'
+        className='button'
         style={{ margin: '30px' }}
         onClick={() => history.push('entity-create')}
       >

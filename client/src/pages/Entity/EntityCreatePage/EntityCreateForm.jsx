@@ -44,7 +44,7 @@ const EntityCreateForm = ({
       }
       if (coordinates) { getAddress(); }
     },
-    [coordinates, coordinates?.lat, coordinates?.lng],
+    [coordinates],
   );
 
   const history = useHistory();

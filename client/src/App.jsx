@@ -26,59 +26,7 @@ const App = () => (
       <Route exact path='/entity/:entityId'>
         <EntityDetailsPage />
       </Route>
-      {/* <Route
-        exact
-        path='/profile'
-        render={props => <LoggedUserProfilePage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/gardeners'
-        render={props => <GardenerListPage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/gardener-details'
-        render={props => <GardenerDetailsPage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/gardener-edit'
-        render={props => <GardenerEditPage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/signup'
-        render={props => <GardenerCreatePage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/login'
-        render={props => <Login {...props} setHeader={setNewHeader} />}
-      />
-
-      <Route
-        exact
-        path='/plant-list'
-        render={props => <PlantListPage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/plant-create'
-        render={props => <PlantCreatePage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/plant-edit/:id'
-        render={props => <PlantEditPage {...props} setHeader={setNewHeader} />}
-      />
-      <Route
-        exact
-        path='/plant-details/:id'
-        render={props => <PlantDetailsPage {...props} setHeader={setNewHeader} />}
-      />
-
-      <Route exact path='/forgot' component={PasswordForgot} />
+      {/* <Route exact path='/forgot' component={PasswordForgot} />
       <Route exact path='/reset/:token' component={PasswordReset} /> */}
       <Route>
         Not found
