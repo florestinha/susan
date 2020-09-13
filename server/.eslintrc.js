@@ -5,7 +5,4 @@ module.exports = {
   },
   "env": {
   },
-  "plugins": [
-    "tape",
-  ],
 };
