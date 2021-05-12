@@ -42,7 +42,7 @@
     "knex-stringcase": "^1.4.2",
     "moment": "^2.28.0",
     "node-uuid": "^1.4.8",
-    "nodemailer": "^4.7.0",
+    "nodemailer": "^6.4.16",
     "nodemailer-sendgrid": "^1.0.3",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
